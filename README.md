@@ -1,17 +1,71 @@
 # Monday Coffee Expansion SQL Project
 
 ![image](https://github.com/user-attachments/assets/bbca5af2-96b7-4ead-ad0a-c6ee9e85ab5a)
-
-
-## Table of Contents
-- [Objective](#objective)
-- [Data Analysis](#data-analysis)
-- [Recommendations](#recommendations)
+  
 ## Objective
 
 The goal of this project is to analyze the sales data of Monday Coffee, a company that has been selling its products online since January 2023, and to recommend the top three major cities in India for opening new coffee shop locations based on consumer demand and sales performance.
 
-## Data Analysis
+## Project Structure
+
+## 1. Database Setup
+
+**- Database Creation**: The project starts by creating a database named monday_coffee_db.
+
+**- Table Creation**: A table named city, customers, products and sales is created to store the coffee sales data.
+
+CREATE TABLE city(
+
+city_id	INT PRIMARY KEY,
+
+city_name VARCHAR(15),	
+
+population	BIGINT,
+
+estimated_rent	FLOAT,
+
+city_rank INT);
+
+
+CREATE TABLE customers(
+
+customer_id INT PRIMARY KEY,
+
+customer_name VARCHAR(25),
+
+city_id INT,
+
+CONSTRAINT fk_city FOREIGN KEY (city_id) REFERENCES city(city_id));
+
+
+CREATE TABLE products(
+
+product_id	INT PRIMARY KEY,
+
+product_name VARCHAR(35),	
+
+Price float);
+
+
+CREATE TABLE sales(
+
+sale_id	INT PRIMARY KEY,
+
+sale_date	date,
+
+product_id	INT,
+
+customer_id	INT,
+
+total FLOAT,
+
+rating INT,
+
+CONSTRAINT fk_products FOREIGN KEY (product_id) REFERENCES products(product_id),
+
+CONSTRAINT fk_customers FOREIGN KEY (customer_id) REFERENCES customers(customer_id) );
+
+## 2. Data Analysis and Findings
 
 **1. How many people in each city are estimated to consume coffee, given that 25% of the population does?**
 
@@ -268,4 +322,12 @@ After analyzing the data, the recommended top three cities for new store opening
 - Highest number of customers, which is 69.
 - Average rent per customer is very low at 156.
 - Average sales per customer is better at 11.6k.
+
+## Conclusion
+
+This project serves as a comprehensive introduction to SQL for data analysts, covering database setup, data cleaning, exploratory data analysis, and business-driven SQL queries. The findings from this project can help drive business decisions by understanding sales patterns, customer behavior, and product performance.
+
+## Author - Antonio Reshme
+
+This project is part of my portfolio, showcasing the SQL skills essential for data analyst roles. If you have any questions, feedback, or would like to collaborate, feel free to get in touch!
 
